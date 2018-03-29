@@ -1,0 +1,35 @@
+!!!
+%html{:lang => "en"}
+  %head
+    %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
+    %title Bootstrap Theme Company Page
+    %meta{:charset => "utf-8"}/
+    %meta{:content => "width=device-width, initial-scale=1", :name => "viewport"}/
+    %link{:href => "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css", :rel => "stylesheet"}/
+    %script{:src => "https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"}
+    %script{:src => "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"}
+  %body
+    %br/
+    .container
+      .row
+        %br/
+        %p#notice= notice
+        %h1 Listing Events
+        %table.table.table-bordered.table-striped
+          %thead
+            %tr
+              %th Event Name
+              %th Event Location
+              %th Event Date
+              %th{:colspan => "4"} Actions
+          %tbody
+            - @events.each do |event|
+              %tr
+                %td= event.name
+                %td= event.location
+                %td= event.date
+                %td= link_to 'Show', event
+                %td= link_to 'Edit', edit_event_path(event)
+                %td= link_to 'Destroy', event, method: :delete, data: { confirm: 'Are you sure?' }
+        %br/
+        = link_to 'New event', new_event_path
